@@ -2,7 +2,7 @@
 
 ## Glue ##
 
-Glue stands for Genetically Led Universal Evaluator and is a machine learning algorithm similar to genetic programming (GP), except that it does not use a concept of population. Clearly, Glue optimizes a single candidate solution to the problem addressed in contrast to the use of C GP. This excluded any crossover operator (evolutionary operators), but a reverse mutation operator is introduced. To solve the problem, optimizes Glue (transforms) a graph whose nodes are operators.
+Glue stands for Genetically Led Universal Evaluator and is a machine learning algorithm similar to genetic programming (GP), except that it does not use a concept of population. Clearly, Glue optimizes a single candidate solution to the given problem in contrast to GP. This excluded any crossover operator (evolutionary operators), but a reverse mutation operator is introduced. To solve a problem,  Glue optimizes (transforms) a graph whose nodes are operators.
 
 (See more on <a href="http://marco.carta.fr/marco/homepage/spip.php?rubrique26&page=rubrique">this page</a>.)
 
