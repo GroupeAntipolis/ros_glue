@@ -4,7 +4,7 @@
 //
 //	Standard datatypes byte-level storage & manuputation.
 //
-//	Custom ibrary managing blob object and typed multipart messaging.
+//	Custom library managing blob object and typed multipart messaging.
 //		[Marco Carta-Gullung . 2015]
 //
 //
@@ -16,6 +16,10 @@
 #endif
 #ifdef __x86_64__
 	#define __ARCH_X86
+	#define __ARCH_64
+#else
+	#define __ARCH_X86
+	#define __ARCH_32
 #endif
 //	#define __ARCH_ARM
 
@@ -191,13 +195,25 @@ class SmartMessage
 
 		void attach(int plength);
 
+		#ifdef __ARCH_64
 		int_32 size();
-		int count();
+		int_32 count();
 		int_32 identifier;
+		#else
+		int size();
+		int count();
+		int identifier;
+		#endif
 	private:
 		byte* content; /// the size - header (4bytes) then, the data...
+
+		#ifdef __ARCH_64
 		int_32 getElmIndex(int index);
 		void setSize(int_32 sz);
+		#else
+		int getElmIndex(int index);
+		void setSize(int sz);
+		#endif
 };
 
 #endif
