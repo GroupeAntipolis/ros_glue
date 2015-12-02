@@ -96,39 +96,36 @@ catkin_package(
 ## we need glue lib
 include_directories(
   ${catkin_INCLUDE_DIRS}
-  /home/carta/prog/Projects/LIBRARIES/CPP/glue
-  /home/carta/prog/Projects/LIBRARIES/CPP/rng
-  /home/carta/prog/Projects/LIBRARIES/CPP/SmartDataCPP
+  libglue
 )
 
 # add imported target
 add_library(rng STATIC IMPORTED)
 # point the imported target at the real file
 set_property(TARGET rng PROPERTY
-IMPORTED_LOCATION /home/carta/prog/Projects/LIBRARIES/CPP/rng/bin/Release/librng.a)
+IMPORTED_LOCATION libglue/librng.a)
 
 # add imported target
 add_library(SmartData STATIC IMPORTED)
 # point the imported target at the real file
 set_property(TARGET SmartData PROPERTY
-IMPORTED_LOCATION /home/carta/prog/Projects/LIBRARIES/CPP/SmartDataCPP/bin/Release/libSmartDataCPP.a)
+IMPORTED_LOCATION libglue/libSmartDataCPP.a)
 
 # add imported target
 add_library(glue STATIC IMPORTED)
 # point the imported target at the real file
 set_property(TARGET glue PROPERTY
-IMPORTED_LOCATION /home/carta/prog/Projects/LIBRARIES/CPP/glue/bin/Release/libglue.a)
+IMPORTED_LOCATION libglue/libglue.a)
                 
 ## Declare a cpp library
 # add_library(glue_node
-#   /home/carta/prog/Projects/LIBRARIES/CPP/SmartDataCPP/SmartData.cpp
-#   /home/carta/prog/Projects/LIBRARIES/CPP/rng/random_gen.cpp
+#   libglue/SmartData.cpp
+#   libglue/random_gen.cpp
 # )
 
+# link dir for libglue.a and deps
 link_directories(
-   /home/carta/prog/Projects/LIBRARIES/CPP/SmartDataCPP/bin/Release
-   /home/carta/prog/Projects/LIBRARIES/CPP/rng/bin/Release
-   /home/carta/prog/Projects/LIBRARIES/CPP/glue/bin/Release 
+   libglue
 )
 
 ## Declare a cpp executable
@@ -138,16 +135,16 @@ link_directories(
 ## Specify libraries to link a library or executable target against
  target_link_libraries(glue_node 
    ${catkin_LIBRARIES} 
-   /home/carta/prog/Projects/LIBRARIES/CPP/glue/bin/Release/libglue.a 
-   /home/carta/prog/Projects/LIBRARIES/CPP/rng/bin/Release/librng.a 
-   /home/carta/prog/Projects/LIBRARIES/CPP/SmartDataCPP/bin/Release/libSmartDataCPP.a 
+   libglue/libglue.a 
+   libglue/librng.a 
+   libglue/libSmartDataCPP.a 
    pthread 
    
  )
 
   target_link_libraries(glue_client
    ${catkin_LIBRARIES} 
-   /home/carta/prog/Projects/LIBRARIES/CPP/rng/bin/Release/librng.a 
+   libglue/librng.a 
    
  )
  
