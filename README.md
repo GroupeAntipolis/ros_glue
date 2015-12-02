@@ -11,7 +11,15 @@ Glue stands for Genetically Led Universal Evaluator and is a machine learning al
 ## Glue node ##
 
 This package is dedicated to machine learning tasks with reals. ros_glue is a service type node for <a href="wiki.ros.org">ROS</a>.
-Feel free to ask any <i>numerical</i> question to your glue graph.
+Feel free to ask any <i>numerical</i> (cohérent) question to your glue graph. 
+
+#### Disclaimers: ####
+
+The code proposed is NOT complete (but usable). Feel free to insult in an elegant manner ... ;)
+
+Glue is not a continuous solver so far, but, soon, dynamic variables nodes (see <a href="http://marco.carta.fr/marco/homepage/spip.php?rubrique26&page=rubrique">this page</a>) will alow that.
+
+Feel free to ask for a 32bit version (or something else, but the moon, at <a href="github.com/GroupeAntipolis/ros_glue">github.com/GroupeAntipolis/ros_glue</a>
 
 ### Topics: ###
 
@@ -59,5 +67,5 @@ See glue_client.cpp for a (near) complete example.
  Enjoy ... & feedback on <a href="github.com/GroupeAntipolis/ros_glue">github.com/GroupeAntipolis/ros_glue</a>
 
 
-<center><b>2015 M. Carta-Gullung pour GroupeAntipolis</b></center>
+<center><b>2015 M. Carta-Gullung pour <a href="github.com/GroupeAntipolis">github.com/GroupeAntipolis</a></b></center>
 
