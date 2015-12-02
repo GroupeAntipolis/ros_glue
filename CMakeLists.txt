@@ -96,7 +96,6 @@ catkin_package(
 ## we need glue lib
 include_directories(
   ${catkin_INCLUDE_DIRS}
-  libglue
 )
 
 # add imported target
