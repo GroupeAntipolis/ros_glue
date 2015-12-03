@@ -25,10 +25,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-/** /mainpage
- * This program is used to explore the environnement in a smart way.
- *
- */
 //#define DEBUG
  // for shutdown
 #include <signal.h> 

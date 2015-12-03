@@ -127,7 +127,7 @@ void query_glue()
 		//output[0]=inputs[0]*inputs[1];
 
 		cout << t << "." << inputs[0] << "*" << inputs[1] << "+" << inputs[0] << "=" << output[0] << endl;
-
+		cout << t << "." << inputs[0] << "*" << inputs[1] << "+" << inputs[0] << "=" << inputs[0] * inputs[1] + inputs[0] << endl;
 		/// we let the time go ..
 		msleep(500);
 
@@ -144,7 +144,8 @@ bool register_service()
 	if (!create_request.call(srv))
 	{
 		ROS_ERROR("Failed to create glue graph !");
-		return false;
+		msleep(3000);
+		return register_service();
 	}
 	return true;
 }
