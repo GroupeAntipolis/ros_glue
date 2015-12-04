@@ -1,0 +1,9 @@
+<launch>
+
+	<!-- Node: GLUE
+	rosrun glue_node glue_node -->
+	<node pkg="ros_glue" type="glue_node" name="glue_node" output="screen"/>
+	<!--   launch-prefix="valgrind" - -track-origins=yes - -leak-check=full - -tool=memcheck - -leak-check=yes -v -->
+	<node pkg="ros_glue" type="glue_client" name="glue_client_node" output="screen"/>
+
+</launch>
