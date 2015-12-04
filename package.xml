@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package>
-  <name>glue_node</name>
+  <name>ros_glue</name>
   <version>0.0.0</version>
-  <description>The glue_node package</description>
+  <description>The ros_glue package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="carta@todo.todo">carta</maintainer>
+  <maintainer email="marco@carta.fr">carta</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/glue_node</url> -->
+  <!-- <url type="website">http://wiki.ros.org/ros_glue</url> -->
 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
