@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(glue_node)
+project(ros_glue)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -96,25 +96,26 @@ catkin_package(
 ## we need glue lib
 include_directories(
   ${catkin_INCLUDE_DIRS}
+  include
 )
 
 # add imported target
 add_library(rng STATIC IMPORTED)
 # point the imported target at the real file
 set_property(TARGET rng PROPERTY
-IMPORTED_LOCATION libglue/librng.a)
+IMPORTED_LOCATION librng.a)
 
 # add imported target
 add_library(SmartData STATIC IMPORTED)
 # point the imported target at the real file
 set_property(TARGET SmartData PROPERTY
-IMPORTED_LOCATION libglue/libSmartDataCPP.a)
+IMPORTED_LOCATION libSmartDataCPP.a)
 
 # add imported target
 add_library(glue STATIC IMPORTED)
 # point the imported target at the real file
 set_property(TARGET glue PROPERTY
-IMPORTED_LOCATION libglue/libglue.a)
+IMPORTED_LOCATION libglue.a)
                 
 ## Declare a cpp library
 # add_library(glue_node
@@ -134,16 +135,16 @@ link_directories(
 ## Specify libraries to link a library or executable target against
  target_link_libraries(glue_node 
    ${catkin_LIBRARIES} 
-   libglue/libglue.a 
-   libglue/librng.a 
-   libglue/libSmartDataCPP.a 
+   libglue.a 
+   librng.a 
+   libSmartDataCPP.a 
    pthread 
    
  )
 
   target_link_libraries(glue_client
    ${catkin_LIBRARIES} 
-   libglue/librng.a 
+   librng.a 
    
  )
  

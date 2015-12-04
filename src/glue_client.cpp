@@ -93,7 +93,7 @@ void build_training()
 		//output[0]=inputs[0]*cos(inputs[1]/inputs[0]);
 		//output[0]=inputs[0]*inputs[1];
 
-		cout << t << " " << inputs[0] << "*" << inputs[1] << "+" << inputs[0] << "=" << output[0] << endl;
+		cout << "training" << t << ":  " << inputs[2] << " * " << inputs[3] << " * cos( " << inputs[1] << " / " << inputs[0] << " ) = " << inputs[2]*inputs[3]*cos(inputs[1]/inputs[0]) << endl;
 
 		glue_train.publish(*train);
 
@@ -109,29 +109,32 @@ void query_glue()
 {
 	double* inputs;
 	double* output;
+	static int t=0;
 	glue_node::glue_query query;
-	query.request.query.reserve(4);
+	query.request.query.resize(4);
+	query.response.answer.resize(1);
 
 	inputs=query.request.query.data();
-	output=query.response.answer.data();
 
-	cout << "we query 10 times .." << endl;
-	for(int t=0;t<10;t++)
+	cout << "we query .." << endl;
+	t++;
+	inputs[0]=rnd.next_double();
+	inputs[1]=rnd.next_double();
+	inputs[2]=rnd.next_double();
+	inputs[3]=rnd.next_double();
+	//output[0]=inputs[2]*inputs[3]*cos(inputs[1]/inputs[0]);
+	
+	cout << "ground(" << t << "):  " << inputs[2] << " * " << inputs[3] << " * cos( " << inputs[1] << " / " << inputs[0] << " ) = " << inputs[2]*inputs[3]*cos(inputs[1]/inputs[0]) << endl;
+	
+	if (!query_request.call(query))
 	{
-		inputs[0]=rnd.next_double();
-		inputs[1]=rnd.next_double();
-		inputs[2]=rnd.next_double();
-		inputs[3]=rnd.next_double();
-		output[0]=inputs[2]*inputs[3]*cos(inputs[1]/inputs[0]);
-		//output[0]=inputs[0]*cos(inputs[1]/inputs[0]);
-		//output[0]=inputs[0]*inputs[1];
-
-		cout << t << "." << inputs[0] << "*" << inputs[1] << "+" << inputs[0] << "=" << output[0] << endl;
-
-		/// we let the time go ..
-		msleep(500);
-
+		ROS_ERROR("Failed to query glue graph !");
 	}
+
+	output=query.response.answer.data();
+	cout << "graph(" << t << "):  " << inputs[2] << " * " << inputs[3] << " * cos( " << inputs[1] << " / " << inputs[0] << " ) = " << output[0] << endl;
+	
+
 
 }
 
@@ -144,7 +147,8 @@ bool register_service()
 	if (!create_request.call(srv))
 	{
 		ROS_ERROR("Failed to create glue graph !");
-		return false;
+		msleep(3000);
+		return register_service();
 	}
 	return true;
 }
@@ -207,11 +211,21 @@ int main(int argc, char **argv)
 	* callbacks will be called from within this thread (the main one).  ros::spin()
 	* will exit when Ctrl-C is pressed, or the node is shutdown by the master.
 	*/
+	int ct=0;
 	ros::Rate r(100);
 	// Do our own spin loop
 	while (!g_request_shutdown)
 	{
 		// Do non-callback stuff
+		
+		/// we let the time go ..
+		ct++;
+		if(ct>10000)
+		{
+			ct=0;
+			query_glue();
+		}
+		
 		ros::spinOnce();                  // Handle ROS events
 	  	r.sleep();
 	}
