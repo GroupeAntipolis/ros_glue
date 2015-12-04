@@ -54,7 +54,11 @@ These are the 3 step in which pass in order to use glue:
  
  Launch file:
  
-		$ roslaunch ros_glue glue_minimal.launch 
+		$ roslaunch ros_glue glue_service_example.launch
+		
+ Execute Glue node:
+ 
+		$ rosrun ros_glue glue_node
 		
 #### Help: ####
 
